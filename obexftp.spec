@@ -10,8 +10,8 @@ BuildRequires:	openobex-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Free open source application for file copying over the Object Exchange (OBEX)
-protocol.
+Free open source application for file copying over the Object Exchange
+(OBEX) protocol.
 
 %package libs
 Summary:	ObexFTP libraries
@@ -32,8 +32,8 @@ Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}
 
 %description devel
-The header files are only needed for development of programs 
-based on ObexFTP.
+The header files are only needed for development of programs based on
+ObexFTP.
 
 %description devel -l pl
 W pakiecie tym znajduj± siê pliki nag³ówkowe, przeznaczone do
