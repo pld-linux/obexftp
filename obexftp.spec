@@ -1,4 +1,5 @@
-Summary:	File copying over the Object Exchange (OBEX) protocol.
+Summary:	File copying over the Object Exchange (OBEX) protocol
+Summary(pl):	Kopiowanie plików z wykorzystaniem protoko³u Object Exchange (OBEX)
 Name:		obexftp
 Version:	0.10.3
 Release:	1
@@ -12,6 +13,10 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 Free open source application for file copying over the Object Exchange
 (OBEX) protocol.
+
+%description
+Wolnodostêpna aplikacja s³u¿±ca do kopiowania plików z wykorzystaniem
+protoko³u Object Exchange (OBEX).
 
 %package libs
 Summary:	ObexFTP libraries
