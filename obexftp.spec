@@ -2,15 +2,17 @@ Summary:	File copying over the Object Exchange (OBEX) protocol
 Summary(pl):	Kopiowanie plików z wykorzystaniem protoko³u Object Exchange (OBEX)
 Name:		obexftp
 Version:	0.10.7
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://triq.net/obexftp/%{name}-%{version}.tar.gz
 # Source0-md5:	e827f68bddc3c38229a08c264614f054
 Patch0:		%{name}-no_server.patch
+Patch1:		%{name}-include_uuid.patch
 URL:		http://triq.net/obex/
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	bluez-libs-devel
 BuildRequires:	libtool
 BuildRequires:	openobex-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -65,6 +67,7 @@ Biblioteka statyczna ObexFTP.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__libtoolize}
