@@ -15,6 +15,7 @@ BuildRequires:	automake
 BuildRequires:	bluez-libs-devel
 BuildRequires:	libtool
 BuildRequires:	openobex-devel
+Requires:	%{name}-libs = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -41,7 +42,7 @@ Summary:	Header files for ObexFTP
 Summary(es):	Ficheros de cabecera para ObexFTP
 Summary(pl):	Pliki nag³ówkowe ObexFTP
 Group:		Development/Libraries
-Requires:	%{name}-libs = %{version}
+Requires:	%{name}-libs = %{version}-%{release}
 
 %description devel
 The header files are only needed for development of programs based on
