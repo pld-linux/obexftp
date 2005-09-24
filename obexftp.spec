@@ -22,7 +22,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Free open source application for file copying over the Object Exchange
 (OBEX) protocol.
 
-%description
+%description -l pl
 Wolnodostêpna aplikacja s³u¿±ca do kopiowania plików z wykorzystaniem
 protoko³u Object Exchange (OBEX).
 
