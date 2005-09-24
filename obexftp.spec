@@ -57,7 +57,7 @@ Summary:	Static ObexFTP library
 Summary(es):	Biblioteca estática de ObexFTP
 Summary(pl):	Biblioteka statyczna ObexFTP
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static ObexFTP library.
