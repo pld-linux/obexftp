@@ -1,14 +1,13 @@
 Summary:	File copying over the Object Exchange (OBEX) protocol
 Summary(pl):	Kopiowanie plików z wykorzystaniem protoko³u Object Exchange (OBEX)
 Name:		obexftp
-Version:	0.10.7
-Release:	3
+Version:	0.20
+Release:	1
 License:	GPL v2
 Group:		Applications/Communications
-Source0:	http://triq.net/obexftp/%{name}-%{version}.tar.gz
-# Source0-md5:	e827f68bddc3c38229a08c264614f054
+Source0:	http://dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.bz2
+# Source0-md5:	86224a7a1880c25e9ba0b8997a97d299
 Patch0:		%{name}-no_server.patch
-Patch1:		%{name}-include_uuid.patch
 URL:		http://triq.net/obex/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -17,6 +16,8 @@ BuildRequires:	libtool
 BuildRequires:	openobex-devel
 Requires:	%{name}-libs = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define         filterout_ld    (-Wl,)?--as-needed
 
 %description
 Free open source application for file copying over the Object Exchange
@@ -68,7 +69,6 @@ Biblioteka statyczna ObexFTP.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{__libtoolize}
@@ -93,7 +93,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc doc/*.html doc/*.png doc/*.css README* THANKS TODO AUTHORS ChangeLog
+%doc doc/obexftp* README* NEWS THANKS TODO AUTHORS ChangeLog
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/man1/*
 
