@@ -5,7 +5,7 @@ Version:	0.20
 Release:	1
 License:	GPL v2
 Group:		Applications/Communications
-Source0:	http://dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.bz2
+Source0:	http://dl.sourceforge.net/sourceforge/openobex/%{name}-%{version}.tar.bz2
 # Source0-md5:	86224a7a1880c25e9ba0b8997a97d299
 Patch0:		%{name}-no_server.patch
 URL:		http://triq.net/obex/
