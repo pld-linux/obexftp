@@ -5,7 +5,7 @@ Version:	0.20
 Release:	1
 License:	GPL v2
 Group:		Applications/Communications
-Source0:	http://dl.sourceforge.net/sourceforge/openobex/%{name}-%{version}.tar.bz2
+Source0:	http://dl.sourceforge.net/openobex/%{name}-%{version}.tar.bz2
 # Source0-md5:	86224a7a1880c25e9ba0b8997a97d299
 Patch0:		%{name}-no_server.patch
 URL:		http://triq.net/obex/
@@ -88,8 +88,8 @@ rm -rf $RPM_BUILD_ROOT
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post libs   -p /sbin/ldconfig
-%postun libs -p /sbin/ldconfig
+%post	libs -p /sbin/ldconfig
+%postun	libs -p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
