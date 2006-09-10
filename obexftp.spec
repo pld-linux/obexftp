@@ -18,6 +18,7 @@ BuildRequires:	bluez-libs-devel
 BuildRequires:	libtool
 BuildRequires:	openobex-devel
 BuildRequires:	perl-devel >= 1:5.8.0
+BuildRequires:	pkgconfig
 BuildRequires:	python-devel
 BuildRequires:	rpm-perlprov
 BuildRequires:	rpm-pythonprov
@@ -49,6 +50,8 @@ Summary(es):	Ficheros de cabecera para ObexFTP
 Summary(pl):	Pliki nag³ówkowe ObexFTP
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
+Requires:	bluez-libs-devel
+Requires:	openobex-devel
 
 %description devel
 The header files are only needed for development of programs based on
