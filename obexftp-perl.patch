@@ -1,0 +1,31 @@
+--- obexftp-0.20/swig/perl/Makefile.am.orig	2006-03-26 00:12:58.000000000 +0100
++++ obexftp-0.20/swig/perl/Makefile.am	2006-09-10 12:42:50.225868750 +0200
+@@ -27,13 +27,13 @@
+ endif
+ 
+ Makefile.perl: Makefile.PL
+-	$(PERL) $< MAKEFILE=$@
++	$(PERL) $< MAKEFILE=$@ INSTALLDIRS=vendor
+ 
+ OBEXFTP.so: perl_wrap.c Makefile.perl
+ 	$(MAKE) -fMakefile.perl
+ 
+ install-data-local:
+-	$(MAKE) -fMakefile.perl PREFIX=$(prefix) install
++	$(MAKE) -fMakefile.perl PREFIX=$(prefix) pure_install
+ 
+ maintainer-clean-local:
+ 	rm -f OBEXFTP.pm perl_wrap.c
+--- obexftp-0.20/swig/perl/Makefile.PL.in.orig	2005-12-12 19:46:55.000000000 +0100
++++ obexftp-0.20/swig/perl/Makefile.PL.in	2006-09-10 12:50:47.807715750 +0200
+@@ -11,8 +11,8 @@
+     'INC'       =>	q[-I@top_srcdir@/obexftp -I../.. @CPPFLAGS@],
+ # Default value for LDDLFLAGS is $Config{lddlflags}="-shared -L/usr/local/lib"
+ # but we want rpath to be @libdir@ or @exec_prefix@/lib
+-    'LDDLFLAGS' =>      q[-shared -Wl,-L@top_builddir@obexftp/.libs -Wl,-rpath=@prefix@/lib],
+-    'LIBS'      =>	q[-L@top_builddir@obexftp/.libs -lobexftp -L@top_builddir@multicobex/.libs -lmulticobex -L@top_builddir@bfb/.libs -lbfb @OPENOBEX_LIBS@ @BLUETOOTH_LIBS@ @LIBS@],
++    'LDDLFLAGS' =>      q[-shared -Wl,-L@top_builddir@/obexftp/.libs -Wl,-rpath=@prefix@/lib],
++    'LIBS'      =>	q[-L@top_builddir@/obexftp/.libs -lobexftp -L@top_builddir@/multicobex/.libs -lmulticobex -L@top_builddir@/bfb/.libs -lbfb @OPENOBEX_LIBS@ @BLUETOOTH_LIBS@ @LIBS@],
+     'OBJECT'	=>	'perl_wrap.o',
+     'NAME'      =>	'OBEXFTP',
+     'FIRST_MAKEFILE'      =>	'Makefile.perl',
