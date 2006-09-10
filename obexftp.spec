@@ -1,3 +1,4 @@
+%include	/usr/lib/rpm/macros.perl
 Summary:	File copying over the Object Exchange (OBEX) protocol
 Summary(pl):	Kopiowanie plik闚 z wykorzystaniem protoko逝 Object Exchange (OBEX)
 Name:		obexftp
@@ -8,16 +9,20 @@ Group:		Applications/Communications
 Source0:	http://dl.sourceforge.net/openobex/%{name}-%{version}.tar.bz2
 # Source0-md5:	86224a7a1880c25e9ba0b8997a97d299
 Patch0:		%{name}-no_server.patch
+Patch1:		%{name}-link.patch
+Patch2:		%{name}-perl.patch
 URL:		http://triq.net/obex/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bluez-libs-devel
 BuildRequires:	libtool
 BuildRequires:	openobex-devel
+BuildRequires:	perl-devel >= 1:5.8.0
+BuildRequires:	python-devel
+BuildRequires:	rpm-perlprov
+BuildRequires:	rpm-pythonprov
 Requires:	%{name}-libs = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define         filterout_ld    (-Wl,)?--as-needed
 
 %description
 Free open source application for file copying over the Object Exchange
@@ -66,9 +71,36 @@ Static ObexFTP library.
 %description static -l pl
 Biblioteka statyczna ObexFTP.
 
+%package -n perl-obexftp
+Summary:	Perl binding for ObexFTP library
+Summary(pl):	Wi您anie Perla dla biblioteki ObexFTP
+Group:		Development/Languages/Perl
+Requires:	%{name}-libs = %{version}-%{release}
+
+%description -n perl-obexftp
+Perl binding for ObexFTP library.
+
+%description -n perl-obexftp -l pl
+Wi您anie Perla dla biblioteki ObexFTP.
+
+%package -n python-obexftp
+Summary:	Python binding for ObexFTP library
+Summary(pl):	Wi您anie Pythona dla biblioteki ObexFTP
+Group:		Libraries/Python
+Requires:	%{name}-libs = %{version}-%{release}
+%pyrequires_eq	python-libs
+
+%description -n python-obexftp
+Python binding for ObexFTP library.
+
+%description -n python-obexftp -l pl
+Wi您anie Pythona dla biblioteki ObexFTP.
+
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
+%patch2 -p1
 
 %build
 %{__libtoolize}
@@ -85,6 +117,10 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+rm -f $RPM_BUILD_ROOT%{perl_vendorarch}/auto/OBEXFTP/.packlist
+rm -f $RPM_BUILD_ROOT%{py_sitedir}/obexftp/_obexftp.{la,a}
+rm -f $RPM_BUILD_ROOT%{py_sitescriptdir}/obexftp/*.py
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -93,7 +129,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc doc/obexftp* README* NEWS THANKS TODO AUTHORS ChangeLog
+%doc doc/obexftp*.html README* NEWS THANKS TODO AUTHORS ChangeLog
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/man1/*
 
@@ -110,3 +146,17 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
+
+%files -n perl-obexftp
+%defattr(644,root,root,755)
+%{perl_vendorarch}/OBEXFTP.pm
+%dir %{perl_vendorarch}/auto/OBEXFTP
+%attr(755,root,root) %{perl_vendorarch}/auto/OBEXFTP/OBEXFTP.so
+%{perl_vendorarch}/auto/OBEXFTP/OBEXFTP.bs
+
+%files -n python-obexftp
+%defattr(644,root,root,755)
+%dir %{py_sitedir}/obexftp
+%attr(755,root,root) %{py_sitedir}/obexftp/_obexftp.so
+%dir %{py_sitescriptdir}/obexftp
+%{py_sitescriptdir}/obexftp/__init__.py[co]
