@@ -11,6 +11,7 @@ Source0:	http://dl.sourceforge.net/openobex/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-no_server.patch
 Patch1:		%{name}-link.patch
 Patch2:		%{name}-perl.patch
+Patch3:		%{name}-py-m4.patch
 URL:		http://triq.net/obex/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -104,6 +105,7 @@ Wi±zanie Pythona dla biblioteki ObexFTP.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 %{__libtoolize}
