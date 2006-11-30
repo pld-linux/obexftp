@@ -3,7 +3,7 @@ Summary:	File copying over the Object Exchange (OBEX) protocol
 Summary(pl):	Kopiowanie plików z wykorzystaniem protoko³u Object Exchange (OBEX)
 Name:		obexftp
 Version:	0.20
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://dl.sourceforge.net/openobex/%{name}-%{version}.tar.bz2
