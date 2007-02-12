@@ -1,6 +1,6 @@
 %include	/usr/lib/rpm/macros.perl
 Summary:	File copying over the Object Exchange (OBEX) protocol
-Summary(pl):	Kopiowanie plików z wykorzystaniem protoko³u Object Exchange (OBEX)
+Summary(pl.UTF-8):   Kopiowanie plikÃ³w z wykorzystaniem protokoÅ‚u Object Exchange (OBEX)
 Name:		obexftp
 Version:	0.20
 Release:	2
@@ -30,25 +30,25 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Free open source application for file copying over the Object Exchange
 (OBEX) protocol.
 
-%description -l pl
-Wolnodostêpna aplikacja s³u¿±ca do kopiowania plików z wykorzystaniem
-protoko³u Object Exchange (OBEX).
+%description -l pl.UTF-8
+WolnodostÄ™pna aplikacja sÅ‚uÅ¼Ä…ca do kopiowania plikÃ³w z wykorzystaniem
+protokoÅ‚u Object Exchange (OBEX).
 
 %package libs
 Summary:	ObexFTP libraries
-Summary(pl):	Biblioteki ObexFTP
+Summary(pl.UTF-8):   Biblioteki ObexFTP
 Group:		Libraries
 
 %description libs
 ObexFTP libraries.
 
-%description libs -l pl
+%description libs -l pl.UTF-8
 Biblioteki ObexFTP.
 
 %package devel
 Summary:	Header files for ObexFTP
-Summary(es):	Ficheros de cabecera para ObexFTP
-Summary(pl):	Pliki nag³ówkowe ObexFTP
+Summary(es.UTF-8):   Ficheros de cabecera para ObexFTP
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe ObexFTP
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	bluez-libs-devel
@@ -58,38 +58,38 @@ Requires:	openobex-devel
 The header files are only needed for development of programs based on
 ObexFTP.
 
-%description devel -l pl
-W pakiecie tym znajduj± siê pliki nag³ówkowe, przeznaczone do
-rozwijania programów bazuj±cych na bibliotekach ObexFTP.
+%description devel -l pl.UTF-8
+W pakiecie tym znajdujÄ… siÄ™ pliki nagÅ‚Ã³wkowe, przeznaczone do
+rozwijania programÃ³w bazujÄ…cych na bibliotekach ObexFTP.
 
 %package static
 Summary:	Static ObexFTP library
-Summary(es):	Biblioteca estática de ObexFTP
-Summary(pl):	Biblioteka statyczna ObexFTP
+Summary(es.UTF-8):   Biblioteca estÃ¡tica de ObexFTP
+Summary(pl.UTF-8):   Biblioteka statyczna ObexFTP
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static ObexFTP library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Biblioteka statyczna ObexFTP.
 
 %package -n perl-obexftp
 Summary:	Perl binding for ObexFTP library
-Summary(pl):	Wi±zanie Perla dla biblioteki ObexFTP
+Summary(pl.UTF-8):   WiÄ…zanie Perla dla biblioteki ObexFTP
 Group:		Development/Languages/Perl
 Requires:	%{name}-libs = %{version}-%{release}
 
 %description -n perl-obexftp
 Perl binding for ObexFTP library.
 
-%description -n perl-obexftp -l pl
-Wi±zanie Perla dla biblioteki ObexFTP.
+%description -n perl-obexftp -l pl.UTF-8
+WiÄ…zanie Perla dla biblioteki ObexFTP.
 
 %package -n python-obexftp
 Summary:	Python binding for ObexFTP library
-Summary(pl):	Wi±zanie Pythona dla biblioteki ObexFTP
+Summary(pl.UTF-8):   WiÄ…zanie Pythona dla biblioteki ObexFTP
 Group:		Libraries/Python
 Requires:	%{name}-libs = %{version}-%{release}
 %pyrequires_eq	python-libs
@@ -97,8 +97,8 @@ Requires:	%{name}-libs = %{version}-%{release}
 %description -n python-obexftp
 Python binding for ObexFTP library.
 
-%description -n python-obexftp -l pl
-Wi±zanie Pythona dla biblioteki ObexFTP.
+%description -n python-obexftp -l pl.UTF-8
+WiÄ…zanie Pythona dla biblioteki ObexFTP.
 
 %prep
 %setup -q
