@@ -1,6 +1,6 @@
 %include	/usr/lib/rpm/macros.perl
 Summary:	File copying over the Object Exchange (OBEX) protocol
-Summary(pl.UTF-8):   Kopiowanie plików z wykorzystaniem protokołu Object Exchange (OBEX)
+Summary(pl.UTF-8):	Kopiowanie plików z wykorzystaniem protokołu Object Exchange (OBEX)
 Name:		obexftp
 Version:	0.20
 Release:	2
@@ -36,7 +36,7 @@ protokołu Object Exchange (OBEX).
 
 %package libs
 Summary:	ObexFTP libraries
-Summary(pl.UTF-8):   Biblioteki ObexFTP
+Summary(pl.UTF-8):	Biblioteki ObexFTP
 Group:		Libraries
 
 %description libs
@@ -47,8 +47,8 @@ Biblioteki ObexFTP.
 
 %package devel
 Summary:	Header files for ObexFTP
-Summary(es.UTF-8):   Ficheros de cabecera para ObexFTP
-Summary(pl.UTF-8):   Pliki nagłówkowe ObexFTP
+Summary(es.UTF-8):	Ficheros de cabecera para ObexFTP
+Summary(pl.UTF-8):	Pliki nagłówkowe ObexFTP
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	bluez-libs-devel
@@ -64,8 +64,8 @@ rozwijania programów bazujących na bibliotekach ObexFTP.
 
 %package static
 Summary:	Static ObexFTP library
-Summary(es.UTF-8):   Biblioteca estática de ObexFTP
-Summary(pl.UTF-8):   Biblioteka statyczna ObexFTP
+Summary(es.UTF-8):	Biblioteca estática de ObexFTP
+Summary(pl.UTF-8):	Biblioteka statyczna ObexFTP
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
@@ -77,7 +77,7 @@ Biblioteka statyczna ObexFTP.
 
 %package -n perl-obexftp
 Summary:	Perl binding for ObexFTP library
-Summary(pl.UTF-8):   Wiązanie Perla dla biblioteki ObexFTP
+Summary(pl.UTF-8):	Wiązanie Perla dla biblioteki ObexFTP
 Group:		Development/Languages/Perl
 Requires:	%{name}-libs = %{version}-%{release}
 
@@ -89,7 +89,7 @@ Wiązanie Perla dla biblioteki ObexFTP.
 
 %package -n python-obexftp
 Summary:	Python binding for ObexFTP library
-Summary(pl.UTF-8):   Wiązanie Pythona dla biblioteki ObexFTP
+Summary(pl.UTF-8):	Wiązanie Pythona dla biblioteki ObexFTP
 Group:		Libraries/Python
 Requires:	%{name}-libs = %{version}-%{release}
 %pyrequires_eq	python-libs
