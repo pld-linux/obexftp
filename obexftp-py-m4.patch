@@ -59,7 +59,7 @@
 +
 +	# Check for Python include path
 +	AC_MSG_CHECKING([for Python include path])
-+	python_includes=`python-config --includes`
++	python_includes=`python2.5-config --includes`
 +	AC_MSG_RESULT([$python_includes])
 +	if test -z "$python_includes" ; then
 +		AC_MSG_ERROR([cannot find Python include path])
@@ -68,7 +68,7 @@
 +
 +	# Check for Python library path
 +	AC_MSG_CHECKING([for Python library path])
-+	python_ldflags=`python-config --ldflags`
++	python_ldflags=`python2.5-config --ldflags`
 +	AC_MSG_RESULT([$python_ldflags])
 +	if test -z "$python_ldflags" ; then
 +		AC_MSG_ERROR([cannot find Python library path])
