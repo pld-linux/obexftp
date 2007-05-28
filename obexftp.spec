@@ -3,7 +3,7 @@ Summary:	File copying over the Object Exchange (OBEX) protocol
 Summary(pl.UTF-8):	Kopiowanie plików z wykorzystaniem protokołu Object Exchange (OBEX)
 Name:		obexftp
 Version:	0.20
-Release:	2
+Release:	3
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://dl.sourceforge.net/openobex/%{name}-%{version}.tar.bz2
@@ -12,6 +12,7 @@ Patch0:		%{name}-no_server.patch
 Patch1:		%{name}-link.patch
 Patch2:		%{name}-perl.patch
 Patch3:		%{name}-py-m4.patch
+Patch4:		%{name}-nostress.patch
 URL:		http://triq.net/obex/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -106,6 +107,7 @@ Wiązanie Pythona dla biblioteki ObexFTP.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p0
 
 %build
 %{__libtoolize}
