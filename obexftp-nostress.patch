@@ -1,20 +1,10 @@
---- apps/Makefile.am	2006-03-26 00:11:59.000000000 +0100
-+++ apps/Makefile.am-new	2007-05-28 13:27:40.657210186 +0200
-@@ -20,7 +20,6 @@
- 				bt_discovery.c
+--- obexftp-0.22/apps/Makefile.am.orig	2008-06-15 21:18:58.000000000 +0200
++++ obexftp-0.22/apps/Makefile.am	2008-09-01 07:59:12.471844124 +0200
+@@ -13,7 +13,6 @@
+ obexftp_SOURCES =		obexftp.c
  
- obexftpd_SOURCES =		obexftpd.c obexftp_sdp.c obexftp_sdp.h
+ obexftpd_SOURCES =		obexftpd.c
 -stress_SOURCES =		stress.c
  discovery_SOURCES =		discovery.c
  
  bin_PROGRAMS =			obexftp obexftpd
---- configure.in	2006-05-16 16:50:29.000000000 +0200
-+++ configure.in-new	2007-05-28 13:41:21.684223141 +0200
-@@ -24,7 +24,6 @@
- # Checks for libraries.
- PKG_CHECK_MODULES(OPENOBEX,openobex)
- 
--AM_ICONV
- dnl IRDA_CHECK
- BLUETOOTH_CHECK
- SDPLIB_CHECK
