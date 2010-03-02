@@ -1,0 +1,11 @@
+--- obexftp-0.23/swig/ruby/ruby_wrap.c~	2009-02-17 19:30:40.000000000 +0100
++++ obexftp-0.23/swig/ruby/ruby_wrap.c	2010-03-02 14:42:43.359124637 +0100
+@@ -2580,7 +2580,7 @@
+     
+     /* VALUE str = StringValue(argv[0]); // perhaps better? */
+     arg2 = STR2CSTR(argv[0]);
+-    arg3 = (int) RSTRING(argv[0])->len;
++    arg3 = (int) RSTRING_LEN(argv[0]);
+     
+     
+     

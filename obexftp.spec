@@ -11,6 +11,7 @@ Source0:	http://dl.sourceforge.net/openobex/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-no_server.patch
 Patch1:		%{name}-perl.patch
 Patch2:		%{name}-nostress.patch
+Patch3:		%{name}-ruby1.9.patch
 URL:		http://triq.net/obex/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -140,6 +141,7 @@ Wiązanie Tcl-a dla biblioteki ObexFTP.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 # hack for -L/usr/%{_lib} before -L../../obexftp/.libs
 ln -sf ../../obexftp/.libs/libobexftp.so swig/ruby
