@@ -16,6 +16,7 @@ URL:		http://triq.net/obex/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bluez-libs-devel
+BuildRequires:	gettext-devel
 BuildRequires:	libtool
 BuildRequires:	openobex-devel
 BuildRequires:	perl-devel >= 1:5.8.0
