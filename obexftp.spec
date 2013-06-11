@@ -3,7 +3,7 @@ Summary:	File copying over the Object Exchange (OBEX) protocol
 Summary(pl.UTF-8):	Kopiowanie plików z wykorzystaniem protokołu Object Exchange (OBEX)
 Name:		obexftp
 Version:	0.23
-Release:	8
+Release:	9
 License:	GPL v2+ (server, bindings), LGPL v2+ (libraries)
 Group:		Applications/Communications
 Source0:	http://dl.sourceforge.net/openobex/%{name}-%{version}.tar.bz2
@@ -12,6 +12,8 @@ Patch0:		%{name}-no_server.patch
 Patch1:		%{name}-perl.patch
 Patch2:		%{name}-nostress.patch
 Patch3:		%{name}-ruby1.9.patch
+Patch4:		am.patch
+Patch5:		format-security.patch
 URL:		http://triq.net/obex/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -145,6 +147,8 @@ Wiązanie Tcl-a dla biblioteki ObexFTP.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
+%patch5 -p1
 
 # hack for -L/usr/%{_lib} before -L../../obexftp/.libs
 ln -sf ../../obexftp/.libs/libobexftp.so swig/ruby

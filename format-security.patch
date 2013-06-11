@@ -1,0 +1,22 @@
+--- obexftp-0.23/swig/python/python_wrap.c~	2009-02-17 19:30:39.000000000 +0100
++++ obexftp-0.23/swig/python/python_wrap.c	2013-06-11 14:09:21.223422870 +0200
+@@ -856,7 +856,7 @@
+     Py_DECREF(old_str);
+     Py_DECREF(value);
+   } else {
+-    PyErr_Format(PyExc_RuntimeError, mesg);
++    PyErr_Format(PyExc_RuntimeError, "%s", mesg);
+   }
+ }
+ 
+--- obexftp-0.23/swig/ruby/ruby_wrap.c~	2013-06-11 14:12:06.515179342 +0200
++++ obexftp-0.23/swig/ruby/ruby_wrap.c	2013-06-11 14:13:37.342810517 +0200
+@@ -1309,7 +1309,7 @@
+ /* Error manipulation */
+ 
+ #define SWIG_ErrorType(code)                            SWIG_Ruby_ErrorType(code)               
+-#define SWIG_Error(code, msg)            		rb_raise(SWIG_Ruby_ErrorType(code), msg)
++#define SWIG_Error(code, msg)            		rb_raise(SWIG_Ruby_ErrorType(code), "%s", msg)
+ #define SWIG_fail                        		goto fail				 
+ 
+ 
