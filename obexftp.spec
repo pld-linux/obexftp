@@ -223,7 +223,6 @@ rm -rf $RPM_BUILD_ROOT
 %{perl_vendorarch}/OBEXFTP.pm
 %dir %{perl_vendorarch}/auto/OBEXFTP
 %attr(755,root,root) %{perl_vendorarch}/auto/OBEXFTP/OBEXFTP.so
-%{perl_vendorarch}/auto/OBEXFTP/OBEXFTP.bs
 
 %files -n python-obexftp
 %defattr(644,root,root,755)
