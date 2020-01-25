@@ -1,4 +1,3 @@
-%include	/usr/lib/rpm/macros.perl
 Summary:	File copying over the Object Exchange (OBEX) protocol
 Summary(pl.UTF-8):	Kopiowanie plików z wykorzystaniem protokołu Object Exchange (OBEX)
 Name:		obexftp
