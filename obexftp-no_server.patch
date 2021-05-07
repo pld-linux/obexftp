@@ -1,11 +1,12 @@
---- ./apps/obexftpd.c.org	2004-11-28 04:10:49.000000000 +0100
-+++ ./apps/obexftpd.c	2005-09-23 21:39:18.568863432 +0200
-@@ -116,7 +116,7 @@
- 	BtOBEX_ServerRegister(handle, bt_src, bt_channel);
+diff -urNp -x '*.orig' obexftp-0.23.org/apps/obexftpd.c obexftp-0.23/apps/obexftpd.c
+--- obexftp-0.23.org/apps/obexftpd.c	2009-02-17 19:27:48.000000000 +0100
++++ obexftp-0.23/apps/obexftpd.c	2021-05-07 23:03:16.308834002 +0200
+@@ -901,7 +901,7 @@ reset:
+ 	}
  	printf("Waiting for connection...\n");
  
 -	(void) OBEX_ServerAccept(handle, obex_event, NULL);
 +	//(void) OBEX_ServerAccept(handle, obex_event, NULL);
  
  	while (!finished) {
- 		printf("Handling connection...\n");
+ 		//printf("Handling connection...\n");
