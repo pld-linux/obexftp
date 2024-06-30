@@ -158,7 +158,9 @@ ln -sf ../../obexftp/.libs/libobexftp.so swig/ruby
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-%configure
+%configure \
+	PYTHON="%{__python}"
+
 %{__make}
 
 %install
