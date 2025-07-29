@@ -154,7 +154,7 @@ ln -sf ../../obexftp/.libs/libobexftp.so swig/ruby
 
 %build
 %{__libtoolize}
-%{__aclocal}
+%{__aclocal} -I m4
 %{__autoconf}
 %{__autoheader}
 %{__automake}
