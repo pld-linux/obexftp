@@ -13,6 +13,8 @@ Patch2:		%{name}-nostress.patch
 Patch3:		%{name}-ruby1.9.patch
 Patch4:		am.patch
 Patch5:		format-security.patch
+Patch6:		includes.patch
+Patch7:		types.patch
 URL:		http://triq.net/obex/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -148,6 +150,8 @@ Wiązanie Tcl-a dla biblioteki ObexFTP.
 %patch -P3 -p1
 %patch -P4 -p1
 %patch -P5 -p1
+%patch -P6 -p1
+%patch -P7 -p1
 
 # hack for -L/usr/%{_lib} before -L../../obexftp/.libs
 ln -sf ../../obexftp/.libs/libobexftp.so swig/ruby

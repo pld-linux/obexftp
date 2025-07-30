@@ -1,0 +1,11 @@
+--- obexftp-0.23/swig/tcl/tcl_wrap.c.orig	2009-02-17 19:30:40.000000000 +0100
++++ obexftp-0.23/swig/tcl/tcl_wrap.c	2025-07-30 20:15:35.292978909 +0200
+@@ -2488,7 +2488,7 @@
+ _wrap_client_put_data(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+   obexftp_client_t *arg1 = (obexftp_client_t *) 0 ;
+   char *arg2 = (char *) 0 ;
+-  size_t arg3 ;
++  int arg3 ;
+   char *arg4 = (char *) NULL ;
+   int result;
+   void *argp1 = 0 ;
