@@ -1,22 +1,3 @@
---- obexftp-0.22/swig/perl/Makefile.am.orig	2008-06-15 21:18:58.000000000 +0200
-+++ obexftp-0.22/swig/perl/Makefile.am	2008-09-01 07:51:10.659840771 +0200
-@@ -9,14 +9,14 @@
- endif
- 
- Makefile.perl: Makefile.PL
--	$(PERL) $< PREFIX=$(prefix) MAKEFILE=$@
-+	$(PERL) $< PREFIX=$(prefix) MAKEFILE=$@ INSTALLDIRS=vendor
- 
- OBEXFTP.so: perl_wrap.c Makefile.perl
- 	if test ! -f perl_wrap.c; then cp $(srcdir)/perl_wrap.c . ; fi
- 	$(MAKE) -fMakefile.perl
- 
- install-data-local: Makefile.perl
--	$(MAKE) -fMakefile.perl install
-+	$(MAKE) -fMakefile.perl pure_install
- 
- # sadly there is no make uninstall for perl
- #uninstall-local: Makefile.perl
 --- obexftp-0.22/swig/perl/Makefile.PL.in.orig	2008-06-15 21:18:58.000000000 +0200
 +++ obexftp-0.22/swig/perl/Makefile.PL.in	2008-09-01 07:50:12.971839933 +0200
 @@ -11,7 +11,7 @@

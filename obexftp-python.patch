@@ -1,0 +1,19 @@
+--- obexftp-0.24.2-Source/swig/python/CMakeLists.txt.orig	2013-08-11 20:26:37.000000000 +0200
++++ obexftp-0.24.2-Source/swig/python/CMakeLists.txt	2025-09-06 12:03:39.202218402 +0200
+@@ -1,6 +1,6 @@
+ 
+-find_package ( PythonLibs REQUIRED )
+ find_package ( PythonInterp REQUIRED )
++find_package ( PythonLibs REQUIRED )
+ 
+ if ( PYTHON_VERSION_STRING AND PYTHONLIBS_VERSION_STRING )
+   if ( NOT PYTHON_VERSION_STRING VERSION_EQUAL PYTHONLIBS_VERSION_STRING )
+@@ -43,7 +43,7 @@ execute_process (
+ file ( TO_CMAKE_PATH "${PYTHON_PREFIX}" PYTHON_PREFIX )
+ execute_process (
+   COMMAND ${PYTHON_EXECUTABLE} -c
+-  	"import site, sys; sys.stdout.write(site.getsitepackages()[-1])"
++  	"import distutils.sysconfig, sys; sys.stdout.write(distutils.sysconfig.get_python_lib(1,0,prefix='/usr'))"
+   OUTPUT_VARIABLE PYTHON_SITE_DIR
+ )
+ file ( TO_CMAKE_PATH "${PYTHON_SITE_DIR}" PYTHON_SITE_DIR )

@@ -1,26 +1,22 @@
+#
+# Conditional build:
+%bcond_without	static_libs	# static libraries
+
 Summary:	File copying over the Object Exchange (OBEX) protocol
 Summary(pl.UTF-8):	Kopiowanie plików z wykorzystaniem protokołu Object Exchange (OBEX)
 Name:		obexftp
-Version:	0.23
-Release:	31
+Version:	0.24.2
+Release:	1
 License:	GPL v2+ (server, bindings), LGPL v2+ (libraries)
 Group:		Applications/Communications
-Source0:	http://dl.sourceforge.net/openobex/%{name}-%{version}.tar.bz2
-# Source0-md5:	f20762061b68bc921e80be4aebc349eb
-Patch0:		%{name}-no_server.patch
+Source0:	https://downloads.sourceforge.net/openobex/%{name}-%{version}-Source.tar.gz
+# Source0-md5:	157a9d1b2ed220203f7084db906de73c
+Patch0:		%{name}-python.patch
 Patch1:		%{name}-perl.patch
-Patch2:		%{name}-nostress.patch
-Patch3:		%{name}-ruby1.9.patch
-Patch4:		am.patch
-Patch5:		format-security.patch
-Patch6:		includes.patch
-Patch7:		types.patch
-URL:		http://triq.net/obex/
-BuildRequires:	autoconf
-BuildRequires:	automake
+URL:		http://dev.zuckschwerdt.org/openobex/wiki/ObexFtp/
+BuildRequires:	asciidoc
 BuildRequires:	bluez-libs-devel
 BuildRequires:	gettext-tools
-BuildRequires:	libtool
 BuildRequires:	openobex-devel
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	pkgconfig
@@ -30,10 +26,9 @@ BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.277
 BuildRequires:	ruby-devel
 BuildRequires:	tcl-devel
+BuildRequires:	xmlto
 Requires:	%{name}-libs = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		skip_post_check_so	obexftp.so.0.0.0
 
 %description
 Free open source application for file copying over the Object Exchange
@@ -43,22 +38,33 @@ Free open source application for file copying over the Object Exchange
 Wolnodostępna aplikacja służąca do kopiowania plików z wykorzystaniem
 protokołu Object Exchange (OBEX).
 
+%package -n obexfs
+Summary:	ObexFTP filesystem
+Summary(pl.UTF-8):	System plików ObexFTP
+Group:		Applications/System
+
+%description -n obexfs
+FUSE based filesystem using ObexFTP.
+
+%description -n obexfs -l pl.UTF-8
+System plików używający ObexFTP oparty na FUSE.
+
 %package libs
-Summary:	ObexFTP libraries
-Summary(pl.UTF-8):	Biblioteki ObexFTP
+Summary:	OBEX file transfer libraries
+Summary(pl.UTF-8):	Biblioteki transmisji plików OBEX
 License:	LGPL v2+
 Group:		Libraries
 
 %description libs
-ObexFTP libraries.
+OBEX file transfer libraries.
 
 %description libs -l pl.UTF-8
-Biblioteki ObexFTP.
+Biblioteki transmisji plików OBEX.
 
 %package devel
-Summary:	Header files for ObexFTP
+Summary:	Header files for OBEX file transfer libraries
 Summary(es.UTF-8):	Ficheros de cabecera para ObexFTP
-Summary(pl.UTF-8):	Pliki nagłówkowe ObexFTP
+Summary(pl.UTF-8):	Pliki nagłówkowe transmisji plików OBEX
 License:	LGPL v2+
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
@@ -74,18 +80,18 @@ W pakiecie tym znajdują się pliki nagłówkowe, przeznaczone do
 rozwijania programów bazujących na bibliotekach ObexFTP.
 
 %package static
-Summary:	Static ObexFTP library
+Summary:	Static OBEX file transfer libraries
 Summary(es.UTF-8):	Biblioteca estática de ObexFTP
-Summary(pl.UTF-8):	Biblioteka statyczna ObexFTP
+Summary(pl.UTF-8):	Statyczne biblioteki transmisji plików OBEX
 License:	LGPL v2+
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
-Static ObexFTP library.
+Static OBEX file transfer libraries.
 
 %description static -l pl.UTF-8
-Biblioteka statyczna ObexFTP.
+Statyczne biblioteki transmisji plików OBEX.
 
 %package -n perl-obexftp
 Summary:	Perl binding for ObexFTP library
@@ -143,39 +149,51 @@ Tcl binding for ObexFTP library.
 Wiązanie Tcl-a dla biblioteki ObexFTP.
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{version}-Source
 %patch -P0 -p1
 %patch -P1 -p1
-%patch -P2 -p1
-%patch -P3 -p1
-%patch -P4 -p1
-%patch -P5 -p1
-%patch -P6 -p1
-%patch -P7 -p1
-
-# hack for -L/usr/%{_lib} before -L../../obexftp/.libs
-ln -sf ../../obexftp/.libs/libobexftp.so swig/ruby
 
 %build
-%{__libtoolize}
-%{__aclocal} -I m4
-%{__autoconf}
-%{__autoheader}
-%{__automake}
-%configure \
-	PYTHON="%{__python}"
+%if %{with static_libs}
+install -d build-static
+cd build-static
+%cmake .. \
+	-DBUILD_SHARED_LIBS=OFF \
+	-DENABLE_PERL=OFF \
+	-DENABLE_PYTHON=OFF \
+	-DENABLE_RUBY=OFF
+
+for dir in bfb multicobex obexftp ; do
+	%{__make} -C $dir
+done
+cd ..
+%endif
+
+install -d build
+cd build
+%cmake .. \
+	-DCMAKE_INSTALL_INCLUDEDIR=include \
+	-DCMAKE_INSTALL_LIBDIR=%{_lib} \
+	-DENABLE_TCL=ON \
+	-DPYTHON_EXECUTABLE=%{__python}
 
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
-	RUBYARCHDIR=$RPM_BUILD_ROOT%{ruby_vendorarchdir} \
+%if %{with static_libs}
+for dir in bfb multicobex obexftp ; do
+	%{__make} -C build-static/$dir install \
+		DESTDIR=$RPM_BUILD_ROOT
+done
+%endif
+
+%{__make} -C build install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/obexftp.{la,a}
-%{__rm} $RPM_BUILD_ROOT%{perl_vendorarch}/auto/OBEXFTP/.packlist
+%py_comp $RPM_BUILD_ROOT%{py_sitedir}
+%py_ocomp $RPM_BUILD_ROOT%{py_sitedir}
 %py_postclean
 
 %clean
@@ -189,29 +207,31 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc doc/obexftp*.html README* NEWS THANKS TODO AUTHORS ChangeLog
+%doc AUTHORS ChangeLog License.txt NEWS README THANKS TODO
 %attr(755,root,root) %{_bindir}/obexftp
 %attr(755,root,root) %{_bindir}/obexftpd
 %{_mandir}/man1/obexftp.1*
 %{_mandir}/man1/obexftpd.1*
 
+%files -n obexfs
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/obexautofs
+%attr(755,root,root) %{_bindir}/obexfs
+
 %files libs
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libbfb.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libbfb.so.0
+%ghost %{_libdir}/libbfb.so.1
 %attr(755,root,root) %{_libdir}/libmulticobex.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libmulticobex.so.1
+%ghost %{_libdir}/libmulticobex.so.1
 %attr(755,root,root) %{_libdir}/libobexftp.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libobexftp.so.0
+%ghost %{_libdir}/libobexftp.so.0
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libbfb.so
-%attr(755,root,root) %{_libdir}/libmulticobex.so
-%attr(755,root,root) %{_libdir}/libobexftp.so
-%{_libdir}/libbfb.la
-%{_libdir}/libmulticobex.la
-%{_libdir}/libobexftp.la
+%{_libdir}/libbfb.so
+%{_libdir}/libmulticobex.so
+%{_libdir}/libobexftp.so
 %{_includedir}/bfb
 %{_includedir}/multicobex
 %{_includedir}/obexftp
@@ -231,10 +251,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n python-obexftp
 %defattr(644,root,root,755)
-%dir %{py_sitedir}/obexftp
-%attr(755,root,root) %{py_sitedir}/obexftp/_obexftp.so
-%{py_sitedir}/obexftp/__init__.py[co]
-%{py_sitedir}/obexftp-*.egg-info
+%attr(755,root,root) %{py_sitedir}/_obexftp.so
+%{py_sitedir}/obexftp.py[co]
 
 %files -n ruby-obexftp
 %defattr(644,root,root,755)
@@ -242,7 +260,4 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n tcl-obexftp
 %defattr(644,root,root,755)
-# -avoid-version missing
-%attr(755,root,root) %{_libdir}/obexftp.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/obexftp.so.0
 %attr(755,root,root) %{_libdir}/obexftp.so
