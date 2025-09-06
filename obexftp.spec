@@ -16,7 +16,9 @@ Patch1:		%{name}-perl.patch
 URL:		http://dev.zuckschwerdt.org/openobex/wiki/ObexFtp/
 BuildRequires:	asciidoc
 BuildRequires:	bluez-libs-devel
+BuildRequires:	expat-devel
 BuildRequires:	gettext-tools
+BuildRequires:	libfuse-devel >= 2.2
 BuildRequires:	openobex-devel
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	pkgconfig
